@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- CSS Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark-mode">
+    <div class="container">
+        <div class="calculator">
+            <div class="teme">
+                <i class="fa-solid fa-moon active-moon"></i>
+                <i class="fa-solid fa-sun"></i>
+            </div>
+            <div class="display">
+                <div class="inputs">
+                    <input type="text" class="operation" value="" readonly>
+                    <input type="text" class="result" value="0" readonly>
+                </div>
+            </div>
+            <div class="buttons">
+                <button class="l-blue ac">AC</button>
+                <button class="l-blue delete"><i class="fa-solid fa-delete-left"></i></i></button>
+                <button class="l-blue percent"><i class="fa-solid fa-percent"></i></button>
+                <button class="orange divide"><i class="fa-solid fa-divide"></i></button>
+
+                <button class="white number">7</button>
+                <button class="white number">8</button>
+                <button class="white number">9</button>
+                <button class="orange times"><i class="fa-solid fa-xmark"></i></button>
+
+                <button class="white number">4</button>
+                <button class="white number">5</button>
+                <button class="white number">6</button>
+                <button class="orange minus"><i class="fa-solid fa-minus"></i></i></button>
+
+                <button class="white number">1</button>
+                <button class="white number">2</button>
+                <button class="white number">3</button>
+                <button class="orange plus"><i class="fa-solid fa-plus"></i></i></button>
+
+                <button class="white back"><i class="fa-solid fa-arrow-rotate-right"></i></button>
+                <button class="white number">0</button>
+                <button class="white point">.</button>
+                <button class="orange equals"><i class="fa-solid fa-equals"></i></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/09c4f58860.js" crossorigin="anonymous"></script>
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- Scripts -->
+    <script src="index.js"></script>
+</body>
+</html>

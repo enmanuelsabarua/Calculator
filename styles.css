@@ -1,0 +1,194 @@
+:root {
+    --main-font: font-family: 'Roboto', sans-serif;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #16181d;
+    height: 100%;
+    font-family: 'Roboto';
+    font-weight: bold;
+    transition: .2s;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+/* Utilities */
+.white {
+    color: white;
+}
+
+.l-blue {
+    color: #26FBD4;
+}
+
+.orange {
+    color: #EF7979;
+}
+
+/* Light Mode */
+.light-mode .calculator, .light-mode .display input {
+    background-color: #FFF;
+    transition: .2s;
+
+}
+
+.light-mode .buttons, .light-mode .teme {
+    background-color: #F9F9F9;
+    transition: .2s;
+}
+
+body.light-mode {
+    background-color: #ebebeb;
+}
+
+.light-mode button {
+    background-color: #F7F7F7;
+}
+
+.light-mode button.number, .light-mode .display input.operation, .light-mode button.back {
+    color: #292D36;
+}
+
+/* Aplication */
+.teme {
+    margin: 0 auto;
+    text-align: center;
+    width: 5rem;
+    border-radius: .5rem;
+    background-color: #292D36;
+    transition: .2s;
+}
+
+.teme i {
+    padding: .5rem;
+    color: rgba(128, 128, 128, 0.466);
+    cursor: pointer;
+    transition: .2s;
+
+}
+
+.teme i.active-moon {
+    color: white;
+}
+
+.teme i.active-sun {
+    color: rgb(51, 51, 51);
+}
+
+.calculator {
+    padding-top: 2rem;
+    background-color: #22252D;
+    border-radius: 1.5rem;
+    transition: .2s;
+}
+
+.display {
+    height: 15rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: end;
+}
+
+.display input {
+    display: block;
+    margin-left: auto;
+    background-color: #22252D;
+    border: none;
+    margin-right: 1rem;
+    letter-spacing: .2rem;
+    font-family: 'Roboto';
+    text-align: right;
+    transition: .2s;
+}
+
+.display input:focus {
+    outline: none;
+}
+
+.operation {
+    width: 17rem;
+    font-size: 1.5rem;
+    margin-left: auto;
+    margin-bottom: .2rem;
+    color: white;
+}
+
+.result {
+    width: 17rem;
+    font-size: 1.5rem;
+    margin-left: auto;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    color: gray;
+    transition: .2s;
+}
+
+.buttons {
+    border-radius: 1.5rem;
+    background-color: #292D36;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    transition: .2s;
+}
+
+button {
+    background-color: #282B33;
+    border: none;
+    border-radius: .5rem;
+    margin: .5rem;
+    padding: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: .9rem;
+    transition: .2s;
+}
+
+button:hover {
+    box-shadow: 1px 1px 16px 1px rgba(23,26,31,0.72);
+    -webkit-box-shadow: 1px 1px 16px 1px rgba(23,26,31,0.72);
+    -moz-box-shadow: 1px 1px 16px 1px rgba(23,26,31,0.72);  
+}
+
+button:active {
+    box-shadow: 1px 1px 16px 1px rgba(23,26,31,0.72) inset;
+    -webkit-box-shadow: 1px 1px 16px 1px rgba(23,26,31,0.72) inset;
+    -moz-box-shadow: 1px 1px 16px 1px rgba(23,26,31,0.72) inset;
+}
+
+button:focus {
+    outline: none;
+}
+
+@media (max-width: 500px) {
+    .container {
+        align-items: stretch;
+        justify-content: stretch;
+    }
+    .calculator {
+        width: 100%;
+        border-radius: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .display {
+        flex-grow: 1;
+    }
+
+    .buttons {
+        border-radius: 1.5rem 1.5rem 0 0;
+    }
+}
