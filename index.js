@@ -7,7 +7,19 @@ const results = [];
 let pushedEqual = 0; 
 
 $(".number").on("click", e => {
-    
+    if (pushedEqual) {
+        operationMemory.push(operation);
+        results.push(result);
+
+        pushedEqual = 0;
+        operation = e.target.innerText;
+        calcOperation = e.target.innerText;
+        calc(calcOperation);
+        $(".operation").attr("value", operation);
+        reduceTextResult(0);
+
+        return;
+    }
 
     operation += e.target.innerText;
     calcOperation += e.target.innerText;
@@ -18,6 +30,19 @@ $(".number").on("click", e => {
 });
 
 $(".point").on("click", e => {
+    if (pushedEqual) {
+        operationMemory.push(operation);
+        results.push(result);
+
+        operation = e.target.innerText;
+        calcOperation = e.target.innerText;
+        $(".operation").attr("value", operation);
+        reduceTextResult(0);
+        pushedEqual = 0;
+
+        return;
+    }
+
     if (calcOperation[calcOperation.length - 1] !== '.') {
         operation += e.target.innerText;
         calcOperation += e.target.innerText;
@@ -34,6 +59,21 @@ $(".delete").on("click", e => {
 });
 
 $(".percent").on("click", e => {
+    if (pushedEqual) {
+        operationMemory.push(operation);
+        results.push(result);
+        
+        operation = parseFloat(results[results.length - 1]) / 100;
+        calcOperation = parseFloat(results[results.length - 1]) / 100;
+        console.log(calcOperation);
+        calc(calcOperation);
+        $(".operation").attr("value", operation);
+        reduceTextResult(0);
+        pushedEqual = 0;
+
+        return;
+    }
+    
     if (operation != '') {
         operation = parseFloat(operation) / 100;
         calcOperation = parseFloat(calcOperation) / 100
@@ -44,6 +84,8 @@ $(".percent").on("click", e => {
 });
 
 $(".plus").on("click", e => {
+    addToMemory('+');
+
     if (calcOperation[calcOperation.length - 1] !== '+'){
         operation += ' + ' ;
         calcOperation += '+';
@@ -54,6 +96,8 @@ $(".plus").on("click", e => {
 });
 
 $(".minus").on("click", e => {
+    addToMemory('-');
+    
     if (calcOperation[calcOperation.length - 1] !== '-') {
         operation += ' - ';
         calcOperation += '-';
@@ -63,6 +107,8 @@ $(".minus").on("click", e => {
 });
 
 $(".times").on("click", e => {
+    addToMemory('*');
+
     if (calcOperation[calcOperation.length - 1] !== '*') {
         operation += ' x ';
         calcOperation += '*';
@@ -72,6 +118,8 @@ $(".times").on("click", e => {
 });
 
 $(".divide").on("click", e => {
+    addToMemory('/');
+    
     if (calcOperation[calcOperation.length - 1] !== '/') {
         operation += ' ÷ ';
         calcOperation += '/';
@@ -96,14 +144,14 @@ $(".equals").on("click", e => {
 
 $(".ac").on("click", e => {
     $(".operation").attr("value", '');
-    $(".result").attr("value", '').css("color", "gray");
-    $(".result").css("font-size", "1.5rem")
     $(".result").attr("value", "0");
+    reduceTextResult(1);
     operation = '';
     calcOperation = '';
     deleteNumber = -1;
 });
 
+// Theme
 $(".fa-sun").on("click", e => {
     $("body").removeClass("dark-mode");
     $("body").addClass("light-mode");
@@ -123,4 +171,33 @@ $(".fa-moon").on("click", e => {
 function calc(op) {
     result = eval(op);
     $(".result").attr("value", `= ${parseFloat(result).toLocaleString('en-US')}`);
+}
+
+function addToMemory(e) {
+    if (pushedEqual) {
+        operationMemory.push(operation);
+        results.push(result);
+
+        pushedEqual = 0;
+        
+        if (e === '*') {
+            operation = `${results[results.length - 1]} ${' x '}`
+        } else if(e === '/') {
+            operation = `${results[results.length - 1]} ${' ÷ '}`
+        } else {
+            operation = `${results[results.length - 1]} ${e}`;
+        }
+        
+        calcOperation = `${results[results.length - 1]}${e}`;
+        $(".operation").attr("value", operation);
+        reduceTextResult(0);
+
+    }
+}
+
+function reduceTextResult(ac) {
+    if (ac === 1) $(".result").attr("value", '').css("color", "gray");
+    else $(".result").css("color", "gray");
+
+    $(".result").css("font-size", "1.5rem");
 }
