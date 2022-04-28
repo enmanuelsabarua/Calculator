@@ -2,11 +2,18 @@ let operation = '';
 let calcOperation = $(".result").attr("value");
 let result = '';
 let deleteNumber = -1;
-const operationMemory = [];
-const results = [];
+let operationMemory = [];
+let results = [];
 let pushedEqual = 0; 
+let resultsMemory;
+let operationsMemory;
 
 $(".number").on("click", e => {
+    $(".clean").html("C");
+    $(".clean").removeClass("ac");
+    $(".clean").addClass("c");
+
+
     if (pushedEqual) {
         operationMemory.push(operation);
         results.push(result);
@@ -17,6 +24,7 @@ $(".number").on("click", e => {
         calc(calcOperation);
         $(".operation").attr("value", operation);
         reduceTextResult(0);
+        displayMemory();
 
         return;
     }
@@ -38,6 +46,7 @@ $(".point").on("click", e => {
         calcOperation = e.target.innerText;
         $(".operation").attr("value", operation);
         reduceTextResult(0);
+        displayMemory();
         pushedEqual = 0;
 
         return;
@@ -142,13 +151,34 @@ $(".equals").on("click", e => {
     pushedEqual = 1;
 });
 
-$(".ac").on("click", e => {
+$(".clean").on("click", e => {
+    if (!$('div').hasClass('memory')) {
+        result = '';
+        operationMemory = [];
+        results = [];
+    }
+
+    $(".clean").addClass("c");
+
+    if (operation === '') {
+        $(".clean").removeClass("c");
+        $(".clean").addClass("ac");
+    }
+
     $(".operation").attr("value", '');
     $(".result").attr("value", "0");
     reduceTextResult(1);
     operation = '';
     calcOperation = '';
     deleteNumber = -1;
+
+    if ($(".clean").hasClass('ac')) {
+        operationsMemory = [];
+        resultsMemory = [];
+        $('.memory').remove();
+    } else {
+        $(".clean").html("AC");
+    }
 });
 
 // Theme
@@ -179,7 +209,7 @@ function addToMemory(e) {
         results.push(result);
 
         pushedEqual = 0;
-        
+
         if (e === '*') {
             operation = `${results[results.length - 1]} ${' x '}`
         } else if(e === '/') {
@@ -192,12 +222,21 @@ function addToMemory(e) {
         $(".operation").attr("value", operation);
         reduceTextResult(0);
 
+        displayMemory();
     }
 }
 
-function reduceTextResult(ac) {
-    if (ac === 1) $(".result").attr("value", '').css("color", "gray");
+function reduceTextResult(clean) {
+    if (clean === 1) $(".result").attr("value", '').css("color", "gray");
     else $(".result").css("color", "gray");
 
     $(".result").css("font-size", "1.5rem");
+}
+
+function displayMemory() {
+    if (results[results.length - 1] != ''){
+        operationsMemory = operationMemory[operationMemory.length - 1];
+        resultsMemory = parseFloat(results[results.length - 1]).toLocaleString('en-US');
+        $(".inputs").prepend(`<div class='memory'><p>${operationsMemory}</p><p>${resultsMemory}</p></div>`);
+    }
 }

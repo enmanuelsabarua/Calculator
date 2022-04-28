@@ -16,6 +16,10 @@ body {
     transition: .2s;
 }
 
+p {
+    margin: 0;
+}
+
 .container {
     display: flex;
     align-items: center;
@@ -60,6 +64,19 @@ body.light-mode {
     color: #292D36;
 }
 
+.light-mode .memory {
+    background-color: #FFF;
+}
+
+.light-mode ::-webkit-scrollbar {
+    background-color: #FFF;
+}
+
+.light-mode ::-webkit-scrollbar-thumb {
+    background-color: #F7F7F7;
+}
+
+
 /* Aplication */
 .teme {
     margin: 0 auto;
@@ -98,6 +115,7 @@ body.light-mode {
     display: flex;
     align-items: flex-end;
     justify-content: end;
+    flex-direction: column;
 }
 
 .display input {
@@ -114,6 +132,22 @@ body.light-mode {
 
 .display input:focus {
     outline: none;
+}
+
+.inputs {
+    margin-top: auto;
+    overflow-y: scroll;
+    padding-right: .5rem;
+}
+
+::-webkit-scrollbar {
+    background-color: #22252D;
+    border-radius: 1rem;
+    width: .5rem;
+
+}
+::-webkit-scrollbar-thumb {
+    background-color: #282b338e;
 }
 
 .operation {
@@ -169,6 +203,22 @@ button:active {
 
 button:focus {
     outline: none;
+}
+
+.memory {
+    color: gray;
+    font-size: 1rem;
+    display: block;
+    margin-left: auto;
+    background-color: #22252D;
+    border: none;
+    margin-top: auto;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    letter-spacing: .2rem;
+    font-family: 'Roboto';
+    text-align: right;
+    transition: .2s;
 }
 
 @media (max-width: 500px) {
