@@ -187,6 +187,7 @@ $(".fa-sun").on("click", e => {
     $("body").addClass("light-mode");
     $(".fa-moon").removeClass("active-moon");
     $(".fa-sun").addClass("active-sun");
+    $('.theme-color').attr("content", "#FFF")
     deleteNumber = -1;
 });
 
@@ -195,6 +196,7 @@ $(".fa-moon").on("click", e => {
     $("body").removeClass("light-mode");
     $(".fa-moon").addClass("active-moon");
     $(".fa-sun").removeClass("active-sun");
+    $('.theme-color').attr("content", "#22252D")
     deleteNumber = -1;
 });
 
