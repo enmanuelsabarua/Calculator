@@ -7,6 +7,9 @@ let results = [];
 let pushedEqual = 0; 
 let resultsMemory;
 let operationsMemory;
+let backMemoryOperation = 0;
+let backMemoryResult = 0
+
 
 $(".number").on("click", e => {
     $(".clean").html("C");
@@ -17,6 +20,9 @@ $(".number").on("click", e => {
     if (pushedEqual) {
         operationMemory.push(operation);
         results.push(result);
+
+        backMemoryOperation = operationMemory.length - 1;
+        backMemoryResult = results.length - 1;
 
         pushedEqual = 0;
         operation = e.target.innerText;
@@ -151,6 +157,7 @@ $(".equals").on("click", e => {
     pushedEqual = 1;
 });
 
+// Clean the display and memory
 $(".clean").on("click", e => {
     if (!$('div').hasClass('memory')) {
         result = '';
@@ -178,6 +185,20 @@ $(".clean").on("click", e => {
         $('.memory').remove();
     } else {
         $(".clean").html("AC");
+    }
+});
+
+// Bring back the operations
+$(".back").on('click', e => {
+    operation = operationMemory[backMemoryOperation];
+
+    $(".operation").attr("value", operation);
+    $(".result").attr("value", `= ${parseFloat(results[backMemoryResult]).toLocaleString('en-US')}`);
+    deleteNumber = -1;
+    
+    if (backMemoryOperation > 0 || backMemoryResult > 0) {
+        backMemoryOperation--;
+        backMemoryResult--;
     }
 });
 
@@ -239,6 +260,11 @@ function displayMemory() {
     if (results[results.length - 1] != ''){
         operationsMemory = operationMemory[operationMemory.length - 1];
         resultsMemory = parseFloat(results[results.length - 1]).toLocaleString('en-US');
-        $(".inputs").prepend(`<div class='memory'><p>${operationsMemory}</p><p>${resultsMemory}</p></div>`);
+
+        if (!$("div").hasClass("memory")) {
+            $(".inputs").prepend(`<div class='memory'><p>${operationsMemory}</p><p>${resultsMemory}</p></div>`);
+        } else {
+            $(`<div class='memory'><p>${operationsMemory}</p><p>${resultsMemory}</p></div>`).insertAfter(".memory");
+        }
     }
 }

@@ -60,7 +60,7 @@ body.light-mode {
     background-color: #F7F7F7;
 }
 
-.light-mode button.number, .light-mode .display input.operation, .light-mode button.back {
+.light-mode button.number, .light-mode .display input.operation, .light-mode button.back, .light-mode button.point {
     color: #292D36;
 }
 
